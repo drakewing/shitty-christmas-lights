@@ -29,6 +29,9 @@ function App() {
         />
         <button onClick={() => setChangeBulb(true)}>Change light bulb</button>
       </div>
+      <div>
+        Made by <a href="https://twitter.com/mattdrake_">Matt</a>
+      </div>
     </div>
   );
 }
