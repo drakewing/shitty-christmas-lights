@@ -5,9 +5,43 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color:#8297ff;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.app {
+  width: 780px;
+  margin: 15px auto;
+  text-align: center;
+}
+
+.app > svg {
+  border: solid;
+  background-color: #0227e0;
+}
+
+.app > h1 {
+  margin: 250 0;
+}
+
+.colorPicker {
+  margin: 25px 36% 0;
+}
+
+.colorPicker button {
+  margin: 10px;
+}
+
+.listStyle {
+  margin-left: 42%;
+  padding: 0;
+}
+
+.listStyle li {
+  list-style-type: none;
+  text-align: left;
 }

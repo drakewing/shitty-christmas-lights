@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 const lightPaths = [
   {
@@ -67,12 +67,13 @@ interface LightProps {
   light: string;
   base: string;
   fill: string;
-  setActiveLight: () => void;
+  strokeWidth: number | null;
+  toggleActiveLight: () => void;
 }
 
 function Light(props: LightProps) {
   const handleClick = () => {
-    props.setActiveLight();
+    props.toggleActiveLight();
   };
 
   return (
@@ -82,6 +83,8 @@ function Light(props: LightProps) {
         fill={props.fill}
         fillRule="evenodd"
         onClick={handleClick}
+        strokeWidth={props.strokeWidth || 1}
+        cursor="pointer"
       />
       <path d={props.base} />
     </>
@@ -97,10 +100,10 @@ interface LightsProps {
 function Lights(props: LightsProps) {
   const [activeLight, setActiveLight] = useState(0);
 
-  if (props.changeBulb) {
+  if (props.changeBulb && activeLight >= 0 && activeLight < lightPaths.length) {
     lightPaths[activeLight].fill = props.selectedColor;
-    props.onBulbChange();
   }
+  props.onBulbChange();
 
   return (
     <svg
@@ -115,10 +118,17 @@ function Lights(props: LightsProps) {
           {lightPaths.map((path, i) => (
             <Light
               key={i}
-              setActiveLight={() => setActiveLight(i)}
+              toggleActiveLight={() => {
+                if (activeLight === i) {
+                  setActiveLight(-1);
+                } else {
+                  setActiveLight(i);
+                }
+              }}
               light={path.light}
               base={path.base}
               fill={path.fill}
+              strokeWidth={activeLight === i ? 3 : 1}
             />
           ))}
         </g>

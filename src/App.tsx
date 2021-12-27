@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import ColorPicker from "./ColorPicker";
 import Lights from "./Lights";
+import "./index.css";
 
 function App() {
   const [selectedColor, setSeletectedColor] = useState("#fff");
@@ -13,14 +14,21 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <h1>Shitty Christmas Lights</h1>
+    <div className="App app">
       <Lights {...lightsProps} />
-      <ColorPicker
-        selectedColor={selectedColor}
-        setSelectedColor={(color) => setSeletectedColor(color.hex)}
-      />
-      <button onClick={() => setChangeBulb(true)}>Change light bulb</button>
+      <h1>Shitty Christmas Lights</h1>
+      <ul className="listStyle">
+        <li>1. Pick a light</li>
+        <li>2. Pick a color</li>
+        <li>3. Change the bulb</li>
+      </ul>
+      <div className="colorPicker">
+        <ColorPicker
+          selectedColor={selectedColor}
+          setSelectedColor={(color) => setSeletectedColor(color.hex)}
+        />
+        <button onClick={() => setChangeBulb(true)}>Change light bulb</button>
+      </div>
     </div>
   );
 }
